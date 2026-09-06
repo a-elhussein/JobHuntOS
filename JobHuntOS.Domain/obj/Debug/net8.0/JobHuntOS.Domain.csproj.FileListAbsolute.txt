@@ -1,0 +1,12 @@
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/bin/Debug/net8.0/JobHuntOS.Domain.deps.json
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/bin/Debug/net8.0/JobHuntOS.Domain.dll
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/bin/Debug/net8.0/JobHuntOS.Domain.pdb
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/JobHuntOS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/JobHuntOS.Domain.AssemblyInfoInputs.cache
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/JobHuntOS.Domain.AssemblyInfo.cs
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/JobHuntOS.Domain.csproj.CoreCompileInputs.cache
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/JobHuntOS.Domain.sourcelink.json
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/JobHuntOS.Domain.dll
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/refint/JobHuntOS.Domain.dll
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/JobHuntOS.Domain.pdb
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Domain/obj/Debug/net8.0/ref/JobHuntOS.Domain.dll

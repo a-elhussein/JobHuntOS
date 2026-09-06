@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LvbaHqIoXoU4u/JPkGAwoxPBDY1CzwflLzi44NOosfE=",
+  "Source": "JobHuntOS.API",
+  "BasePath": "_content/JobHuntOS.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
