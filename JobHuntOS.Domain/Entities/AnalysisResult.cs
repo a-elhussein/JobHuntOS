@@ -9,7 +9,7 @@ public class AnalysisResult
     public List<string> MissingSkills { get; set; } = new();
     public string? Recommendations { get; set; }
     public string? RawResponse { get; set; }
-    public DateTime AnalysedAt { get; set; }
+    public DateTime AnalysedAt { get; set; } = DateTime.UtcNow;
     
     public JobApplication? Application { get; set; }
 }
