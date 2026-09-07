@@ -16,8 +16,8 @@ public class JobApplication
     public int? SalaryMax { get; set; }
     public DateTime AppliedDate { get; set; }
     public DateTime? FollowUpDate { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime LastUpdated { get; set; }
+    public DateTime CreatedAt { get; set; } =  DateTime.UtcNow;
+    public DateTime LastUpdated { get; set; } =  DateTime.UtcNow;
     
     public ICollection<ApplicationNote>  Notes { get; set; } = new List<ApplicationNote>();
     public AnalysisResult? AnalysisResult { get; set; }

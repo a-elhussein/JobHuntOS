@@ -16,3 +16,5 @@
 /Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Infrastructure/obj/Debug/net8.0/refint/JobHuntOS.Infrastructure.dll
 /Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Infrastructure/obj/Debug/net8.0/JobHuntOS.Infrastructure.pdb
 /Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Infrastructure/obj/Debug/net8.0/ref/JobHuntOS.Infrastructure.dll
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Infrastructure/bin/Debug/net8.0/JobHuntOS.Infrastructure.runtimeconfig.json
+/Users/ahmed/Desktop/FFApp/JobHuntOS/JobHuntOS.Infrastructure/obj/Debug/net8.0/JobHuntOS.Infrastructure.genruntimeconfig.cache
