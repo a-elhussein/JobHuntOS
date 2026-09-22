@@ -18,6 +18,7 @@ public class JobApplication
     public DateTime? FollowUpDate { get; set; }
     public DateTime CreatedAt { get; set; } =  DateTime.UtcNow;
     public DateTime LastUpdated { get; set; } =  DateTime.UtcNow;
+    public bool IsDeleted { get; set; } =  false;
     
     public ICollection<ApplicationNote>  Notes { get; set; } = new List<ApplicationNote>();
     public AnalysisResult? AnalysisResult { get; set; }
