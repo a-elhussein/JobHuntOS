@@ -22,8 +22,6 @@ public class AppDbContext: DbContext
             entity.Property(e => e.CompanyName).IsRequired().HasMaxLength(255);
             entity.Property(e => e.JobTitle).IsRequired().HasMaxLength(255);
             entity.Property(e => e.Status).HasConversion<string>();
-            entity.Property(e => e.CreatedAt).HasDefaultValueSql("NOW()");
-            entity.Property(e => e.LastUpdated).HasDefaultValueSql("NOW()");
 
             entity.HasMany(e => e.Notes)
                 .WithOne(n => n.Application)
@@ -45,7 +43,6 @@ public class AppDbContext: DbContext
         modelBuilder.Entity<AnalysisResult>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.AnalysedAt).HasDefaultValueSql("NOW()");
         });
 
         modelBuilder.Entity<UserCV>(entity =>
