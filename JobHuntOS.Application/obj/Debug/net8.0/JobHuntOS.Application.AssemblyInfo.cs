@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JobHuntOS.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+697f1055f66d2cfa9d5510498bdeac1fa2dc8003")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e44bb29807d25e40ff39e212985db1e0bfb9620b")]
 [assembly: System.Reflection.AssemblyProductAttribute("JobHuntOS.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JobHuntOS.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
