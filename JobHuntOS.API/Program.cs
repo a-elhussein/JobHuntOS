@@ -1,14 +1,12 @@
-using JobHuntOS.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using JobHuntOS.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddInfrastructre(builder.Configuration);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
