@@ -20,8 +20,4 @@
       <ProjectReference Include="..\JobHuntOS.Infrastructure\JobHuntOS.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Middleware\" />
-    </ItemGroup>
-
 </Project>
