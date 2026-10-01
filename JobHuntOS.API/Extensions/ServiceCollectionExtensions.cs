@@ -1,4 +1,5 @@
 using JobHuntOS.Application.Interfaces;
+using JobHuntOS.Application.Services;
 using JobHuntOS.Application.Services.Interfaces;
 using JobHuntOS.Infrastructure.Data;
 using JobHuntOS.Infrastructure.Repositories;
@@ -15,7 +16,7 @@ public static class ServiceCollectionExtensions
             .GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IApplicationRepository, ApplicationRepository>();
-        services.AddScoped<IApplicationService, IApplicationService>();
+        services.AddScoped<IApplicationService, ApplicationService>();
         
         return services;
     }
