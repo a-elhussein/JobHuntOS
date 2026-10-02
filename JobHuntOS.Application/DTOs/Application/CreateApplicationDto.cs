@@ -1,4 +1,4 @@
-namespace JobHuntOS.Application.DTOs;
+namespace JobHuntOS.Application.DTOs.Application;
 
 public class CreateApplicationDto
 {

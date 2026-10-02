@@ -1,4 +1,4 @@
-using JobHuntOS.Application.DTOs;
+using JobHuntOS.Application.DTOs.Application;
 using JobHuntOS.Application.Interfaces;
 using JobHuntOS.Application.Services.Interfaces;
 using JobHuntOS.Domain.Entities;
