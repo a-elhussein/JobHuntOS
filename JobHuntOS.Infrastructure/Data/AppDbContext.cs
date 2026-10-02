@@ -10,6 +10,7 @@ public class AppDbContext: DbContext
     }
     public DbSet<JobApplication> JobApplications => Set<JobApplication>();
     public DbSet<AnalysisResult> AnalysisResults => Set<AnalysisResult>();
+    public DbSet<ApplicationNote> ApplicationNote => Set<ApplicationNote>();
     public DbSet<UserCV>  UserCVs => Set<UserCV>();
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,6 +1,6 @@
 using JobHuntOS.Domain.Enums;
 
-namespace JobHuntOS.Application.DTOs;
+namespace JobHuntOS.Application.DTOs.Application;
 
 public class UpdateApplicationDto
 {

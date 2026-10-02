@@ -1,4 +1,5 @@
 using JobHuntOS.Application.DTOs;
+using JobHuntOS.Application.DTOs.Application;
 using JobHuntOS.Domain.Enums;
 
 namespace JobHuntOS.Application.Services.Interfaces;

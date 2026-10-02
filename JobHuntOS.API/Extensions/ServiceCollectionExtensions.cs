@@ -17,6 +17,8 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IApplicationRepository, ApplicationRepository>();
         services.AddScoped<IApplicationService, ApplicationService>();
+        services.AddScoped<INoteRepository, NoteRepository>();
+        services.AddScoped<INoteService, NoteService>();
         
         return services;
     }
