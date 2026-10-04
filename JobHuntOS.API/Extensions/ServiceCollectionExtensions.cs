@@ -2,6 +2,7 @@ using JobHuntOS.Application.Interfaces;
 using JobHuntOS.Application.Services;
 using JobHuntOS.Application.Services.Interfaces;
 using JobHuntOS.Infrastructure.Data;
+using JobHuntOS.Infrastructure.ExternalServices;
 using JobHuntOS.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<INoteService, NoteService>();
         services.AddScoped<ICvRepository, CvRepository>();
         services.AddScoped<ICvService, CvService>();
+        services.AddHttpClient<IClaudeApiService, ClaudeApiService>();
+        services.AddScoped<IAnalysisRepository, AnalysisRepository>();
+        services.AddScoped<IAnalysisService, AnalysisService>();
         
         return services;
     }
