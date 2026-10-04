@@ -3,3 +3,6 @@ obj/
 .DS_Store
 *.user
 .idea/
+**/appsettings.json
+**/appsettings.*.json
+
