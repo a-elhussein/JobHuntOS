@@ -25,6 +25,7 @@ public static class ServiceCollectionExtensions
         services.AddHttpClient<IClaudeApiService, ClaudeApiService>();
         services.AddScoped<IAnalysisRepository, AnalysisRepository>();
         services.AddScoped<IAnalysisService, AnalysisService>();
+        services.AddScoped<IDashboardService, DashboardService>();
         
         return services;
     }
