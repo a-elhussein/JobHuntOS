@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHuntOS.Application", "Jo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHuntOS.Infrastructure", "JobHuntOS.Infrastructure\JobHuntOS.Infrastructure.csproj", "{886B83D4-0686-40DA-AFCC-0B979A6BB653}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHuntOS.Application.Tests", "JobHuntOS.Application.Tests\JobHuntOS.Application.Tests.csproj", "{C30ABC06-CB05-46B3-A5CD-CB92C1F5CC02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{886B83D4-0686-40DA-AFCC-0B979A6BB653}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{886B83D4-0686-40DA-AFCC-0B979A6BB653}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{886B83D4-0686-40DA-AFCC-0B979A6BB653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C30ABC06-CB05-46B3-A5CD-CB92C1F5CC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C30ABC06-CB05-46B3-A5CD-CB92C1F5CC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C30ABC06-CB05-46B3-A5CD-CB92C1F5CC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C30ABC06-CB05-46B3-A5CD-CB92C1F5CC02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
