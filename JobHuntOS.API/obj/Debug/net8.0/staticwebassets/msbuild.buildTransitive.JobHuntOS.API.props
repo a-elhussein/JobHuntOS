@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/JobHuntOS.API.props" />
-</Project>
