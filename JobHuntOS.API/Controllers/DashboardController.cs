@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using JobHuntOS.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
