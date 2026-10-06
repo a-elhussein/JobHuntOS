@@ -5,6 +5,8 @@ using JobHuntOS.Infrastructure.Data;
 using JobHuntOS.Infrastructure.ExternalServices;
 using JobHuntOS.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace JobHuntOS.API.Extensions;
 
