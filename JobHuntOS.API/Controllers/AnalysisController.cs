@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using JobHuntOS.Application.DTOs.Analysis;
 using JobHuntOS.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;

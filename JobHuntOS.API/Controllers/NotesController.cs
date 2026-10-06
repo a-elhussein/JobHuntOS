@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using JobHuntOS.Application.DTOs.Note;
 using JobHuntOS.Application.Services.Interfaces;
 using JobHuntOS.Domain.Entities;
