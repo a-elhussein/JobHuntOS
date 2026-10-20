@@ -19,13 +19,13 @@ public class ApplicationService: IApplicationService
     public async Task<IEnumerable<ApplicationResponseDto>> GetAllAsync()
     {
         var applications = await _repository.GetAllAsync();
-        return applications.Select(MapToResponseDto);
+        return applications.Select(MapToResponseDto).ToList();
     }
 
     public async Task<IEnumerable<ApplicationResponseDto>> GetByStatusAsync(ApplicationStatus status)
     {
         var applications = await _repository.GetByStatusAsync(status);
-        return applications.Select(MapToResponseDto);
+        return applications.Select(MapToResponseDto).ToList();
     }
 
     public async Task<ApplicationResponseDto?> GetByIdAsync(Guid id)
@@ -95,7 +95,7 @@ public class ApplicationService: IApplicationService
     public async Task<IEnumerable<ApplicationResponseDto>> GetOverdueFollowUpsAsync()
     {
         var application = await _repository.GetOverDueFollowUpAsync();
-        return application.Select(MapToResponseDto);
+        return application.Select(MapToResponseDto).ToList();
     }
 
     private static ApplicationResponseDto MapToResponseDto(JobApplication application)

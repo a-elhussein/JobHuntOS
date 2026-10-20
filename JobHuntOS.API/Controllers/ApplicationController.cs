@@ -9,7 +9,7 @@ namespace JobHuntOS.API.Controllers;
 
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/applications")]
 public class ApplicationController: ControllerBase
 {
     private readonly IApplicationService _service;
@@ -24,7 +24,7 @@ public class ApplicationController: ControllerBase
     {
         if (status.HasValue)
         {
-            var filteredStatus = _service.GetByStatusAsync(status.Value);
+            var filteredStatus = await _service.GetByStatusAsync(status.Value);
             return  Ok(filteredStatus);
         }
         
