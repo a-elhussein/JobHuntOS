@@ -1,5 +1,5 @@
 import client from './client';
-import type {Cv, UpsertCvDto} from "../types/idex.ts";
+import type {Cv, UpsertCvDto} from "../types";
 
 
 export const cvApi = {
