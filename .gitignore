@@ -4,4 +4,3 @@ obj/
 *.user
 .idea/
 appsettings.json
-.env
