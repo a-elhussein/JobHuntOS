@@ -110,4 +110,4 @@ const AnalysisPage = () => {
     )
 }
 
-export default AnalysisPage
+export default AnalysisPage;

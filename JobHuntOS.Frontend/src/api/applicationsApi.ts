@@ -1,4 +1,8 @@
-import type {CreateApplicationDto, JobApplication, UpdateApplicationDto} from "../types";
+import {
+    type CreateApplicationDto,
+    type JobApplication,
+    type UpdateApplicationDto
+} from "../types";
 import client from "./client.ts";
 
 export const applicationsApi = {

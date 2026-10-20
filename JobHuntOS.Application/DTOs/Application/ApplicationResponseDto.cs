@@ -9,7 +9,7 @@ public class ApplicationResponseDto
     public string JobTitle { get; set; } = string.Empty;
     public string? JobUrl { get; set; }
     public string? JobDescription { get; set; }
-    public ApplicationStatus Status { get; set; }
+    public ApplicationStatus Status { get; set; } 
     public string? Location { get; set; }
     public bool IsRemote { get; set; }
     public int? SalaryMin { get; set; }
