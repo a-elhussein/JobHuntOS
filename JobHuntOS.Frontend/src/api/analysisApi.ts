@@ -1,5 +1,5 @@
 import client from './client';
-import type {AnalysisRequest, AnalysisResponse} from "../types/idex.ts";
+import type {AnalysisRequest, AnalysisResponse} from "../types";
 
 
 export const analysisApi = {

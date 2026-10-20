@@ -1,11 +1,15 @@
-import type {CreateApplicationDto, JobApplication, UpdateApplicationDto} from "../types/idex.ts";
+import {
+    type CreateApplicationDto,
+    type JobApplication,
+    type UpdateApplicationDto
+} from "../types";
 import client from "./client.ts";
 
 export const applicationsApi = {
-    getAll: async (status?:string): Promise<JobApplication[]> => {
-        const params = status ? {status} : {};
-        const response = await client.get('/api/applications', {params});
-        return response.data;
+    getAll: async (status?: number): Promise<JobApplication[]> => {
+        const params = status !== undefined ? { status } : {}
+        const response = await client.get<JobApplication[]>('/api/applications', { params })
+        return response.data
     },
 
     getById: async (id: string): Promise<JobApplication> => {
