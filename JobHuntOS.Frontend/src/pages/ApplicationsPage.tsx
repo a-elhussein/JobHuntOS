@@ -30,6 +30,15 @@ const ApplicationsPage = () => {
         },
     })
 
+    const updateMutation = useMutation({
+        mutationFn: ({ id, status }: { id: string; status: number }) =>
+            applicationsApi.update(id, { status }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['applications'] })
+            queryClient.invalidateQueries({ queryKey: ['dashboard-stats'] })
+        },
+    })
+
     if (isLoading) return <div className="p-8">Loading...</div>
 
     return (
@@ -88,7 +97,18 @@ const ApplicationsPage = () => {
                                     ? new Date(app.followUpDate).toLocaleDateString()
                                     : '-'}
                             </td>
-                            <td className="p-4">
+                            <td className="p-4 flex gap-2 items-center">
+                                <select
+                                    value={app.status}
+                                    onChange={e => updateMutation.mutate({ id: app.id, status: parseInt(e.target.value) })}
+                                    className="text-sm border border-gray-300 rounded px-2 py-1"
+                                >
+                                    <option value={0}>Applied</option>
+                                    <option value={1}>Interview</option>
+                                    <option value={2}>Offer</option>
+                                    <option value={3}>Rejected</option>
+                                    <option value={4}>Withdrawn</option>
+                                </select>
                                 <button
                                     onClick={() => deleteMutation.mutate(app.id)}
                                     className="text-red-500 hover:text-red-700 text-sm"
