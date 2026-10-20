@@ -1,5 +1,5 @@
 import client from './client';
-import type {DashboardStats} from "../types/idex.ts";
+import type {DashboardStats} from "../types";
 
 
 export const dashboardApi = {
