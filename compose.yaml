@@ -1,4 +1,4 @@
-﻿version: '3.8'
+version: '3.8'
 
 services:
   api:
@@ -7,6 +7,8 @@ services:
       dockerfile: JobHuntOS.API/Dockerfile
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=jobhuntos;Username=postgres;Password=postgres
