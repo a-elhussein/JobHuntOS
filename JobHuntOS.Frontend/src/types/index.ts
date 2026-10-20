@@ -1,9 +1,17 @@
 export enum ApplicationStatus {
-    Applied = 'Applied',
-    Interview = 'Interview',
-    Offer = 'Offer',
-    Rejected = 'Rejected',
-    Withdrawn = 'Withdrawn'
+    Applied = 0,
+    Interview = 1,
+    Offer = 2,
+    Rejected = 3,
+    Withdrawn = 4
+}
+
+export const StatusLabel: Record<ApplicationStatus, string> = {
+    [ApplicationStatus.Applied]: 'Applied',
+    [ApplicationStatus.Interview]: 'Interview',
+    [ApplicationStatus.Offer]: 'Offer',
+    [ApplicationStatus.Rejected]: 'Rejected',
+    [ApplicationStatus.Withdrawn]: 'Withdrawn',
 }
 
 export interface JobApplication {
@@ -97,3 +105,4 @@ export interface DashboardStats {
     overdueFollowUps: number;
     responseRate: number;
 }
+

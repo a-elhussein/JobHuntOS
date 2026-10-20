@@ -1,4 +1,4 @@
-import type {CreateNoteDto, Note} from "../types/idex.ts";
+import type {CreateNoteDto, Note} from "../types";
 import client from "./client.ts";
 
 export const notesApi = {
