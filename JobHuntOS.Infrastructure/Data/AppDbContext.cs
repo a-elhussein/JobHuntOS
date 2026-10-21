@@ -1,9 +1,12 @@
 using JobHuntOS.Domain.Entities;
+using JobHuntOS.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobHuntOS.Infrastructure.Data;
 
-public class AppDbContext: DbContext
+public class AppDbContext: IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -33,6 +36,12 @@ public class AppDbContext: DbContext
                 .WithOne(a => a.Application)
                 .HasForeignKey<AnalysisResult>(a => a.ApplicationId)
                 .OnDelete(DeleteBehavior.SetNull);
+            
+            entity.HasIndex(e => e.UserId);
+            entity.HasOne<AppUser>()
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<ApplicationNote>(entity =>
@@ -44,12 +53,22 @@ public class AppDbContext: DbContext
         modelBuilder.Entity<AnalysisResult>(entity =>
         {
             entity.HasKey(e => e.Id);
+            entity.HasIndex(e => e.UserId);
+            entity.HasOne<AppUser>()
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<UserCV>(entity =>
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Content).IsRequired();
+            entity.HasIndex(e => e.UserId);
+            entity.HasOne<AppUser>()
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
     }
 
