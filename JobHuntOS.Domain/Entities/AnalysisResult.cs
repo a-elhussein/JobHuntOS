@@ -3,6 +3,7 @@ namespace JobHuntOS.Domain.Entities;
 public class AnalysisResult
 {
     public Guid Id { get; set; }
+    public Guid UserId { get; set; }
     public Guid? ApplicationId { get; set; }
     public int FitScore { get; set; }
     public List<string> MatchingSkills { get; set; } = new();
