@@ -13,6 +13,9 @@ services:
       - Claude__ApiKey=${CLAUDE_API_KEY}
       - Claude__Model=claude-sonnet-4-6
       - Claude__MaxTokens=1024
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=JobHuntOS
+      - Jwt__Audience=JobHuntOS
     depends_on:
       db:
         condition: service_healthy

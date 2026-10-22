@@ -10,18 +10,31 @@ public class AnalysisService : IAnalysisService
     private readonly IClaudeApiService _claudeApiService;
     private readonly ICvRepository _cvRepository;
     private readonly IAnalysisRepository _analysisRepository;
+    private readonly ICurrentUserService _currentUserService;
+    private readonly IApplicationRepository _applicationRepository;
 
     public AnalysisService(IClaudeApiService claudeApiService, ICvRepository cvRepository,
-        IAnalysisRepository analysisRepository)
+        IAnalysisRepository analysisRepository, ICurrentUserService  currentUserService, IApplicationRepository applicationRepository)
     {
         _claudeApiService = claudeApiService;
         _cvRepository = cvRepository;
         _analysisRepository = analysisRepository;
+        _currentUserService = currentUserService;
+        _applicationRepository = applicationRepository;
     }
 
     public async Task<AnalysisResponseDto> AnalyseAsync(AnalysisRequestDto dto)
     {
-        var cv = await _cvRepository.GetCurrentAsync();
+        var userId = _currentUserService.UserId;
+        
+        if (dto.ApplicationId.HasValue)
+        {
+            var app = await _applicationRepository.GetByIdAsync(dto.ApplicationId.Value, userId);
+            if (app == null)
+                throw new KeyNotFoundException("Application not found");
+        }
+        
+        var cv = await _cvRepository.GetCurrentAsync(userId);
         if (cv == null)
             throw new KeyNotFoundException("Cv not found");
 
@@ -46,7 +59,7 @@ public class AnalysisService : IAnalysisService
 
     public async Task<AnalysisResponseDto?> GetByApplicationIdAsync(Guid applicationId)
     {
-        var result = await _analysisRepository.GetByApplicationIdAsync(applicationId);
+        var result = await _analysisRepository.GetByApplicationIdAsync(applicationId, _currentUserService.UserId);
         return result == null ? null : MapToResponseDto(result);
     }
 

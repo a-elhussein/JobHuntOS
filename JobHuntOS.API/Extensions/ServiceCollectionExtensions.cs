@@ -1,3 +1,4 @@
+using JobHuntOS.API.Services;
 using JobHuntOS.Application.Interfaces;
 using JobHuntOS.Application.Services;
 using JobHuntOS.Application.Services.Interfaces;
@@ -28,6 +29,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAnalysisRepository, AnalysisRepository>();
         services.AddScoped<IAnalysisService, AnalysisService>();
         services.AddScoped<IDashboardService, DashboardService>();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
         
         return services;
     }

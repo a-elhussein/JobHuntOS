@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
 using JobHuntOS.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobHuntOS.API.Controllers;
 
 [ApiController]
 [Route("api/dashboard")]
+[Authorize]
 
 public class DashboardController: ControllerBase
 {

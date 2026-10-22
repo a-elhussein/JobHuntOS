@@ -9,11 +9,13 @@ public class NoteService: INoteService
 {
     private readonly INoteRepository _noteRepository;
     private readonly IApplicationRepository _applicationRepository;
+    private readonly ICurrentUserService _currentUser;
 
-    public NoteService(INoteRepository noteRepository, IApplicationRepository applicationRepository)
+    public NoteService(INoteRepository noteRepository, IApplicationRepository applicationRepository, ICurrentUserService currentUser)
     {
         _noteRepository = noteRepository;
         _applicationRepository = applicationRepository;
+        _currentUser = currentUser;
     }
     public async Task<IEnumerable<NoteResponseDto>> GetByApplicationIdAsync(Guid applicationId)
     {
@@ -23,7 +25,7 @@ public class NoteService: INoteService
 
     public async Task<NoteResponseDto> CreateAsync(Guid applicationId, CreateNoteDto dto)
     {
-        var application = await _applicationRepository.GetByIdAsync(applicationId);
+        var application = await _applicationRepository.GetByIdAsync(applicationId, _currentUser.UserId);
         if (application == null)
             throw new ApplicationException($"Application with ID {applicationId} not found");
 
@@ -41,10 +43,10 @@ public class NoteService: INoteService
         return MapToResponseDto(note);
     }
 
-    public async Task<bool> DeleteAsync(Guid noteId)
+    public async Task<bool> DeleteAsync(Guid applicationId, Guid noteId)
     {
         var note = await _noteRepository.GetByIdAsync(noteId);
-        if (note == null) return false;
+        if (note == null || note.ApplicationId != applicationId) return false;
         
         await _noteRepository.DeleteAsync(note);
         await _applicationRepository.SaveChangesAsync();

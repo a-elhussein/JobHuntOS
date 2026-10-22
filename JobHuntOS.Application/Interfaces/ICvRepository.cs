@@ -4,7 +4,7 @@ namespace JobHuntOS.Application.Interfaces;
 
 public interface ICvRepository
 {
-    Task<UserCV?> GetCurrentAsync();
+    Task<UserCV?> GetCurrentAsync(Guid userId);
     Task AddAsync(UserCV cv);
     Task DeleteAsync(UserCV cv);
     Task<int> SaveChangesAsync();

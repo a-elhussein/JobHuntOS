@@ -8,18 +8,20 @@ namespace JobHuntOS.Application.Services;
 public class DashboardService: IDashboardService
 {
     private readonly IApplicationRepository _repository;
+    private readonly ICurrentUserService _currentUser;
 
-    public DashboardService(IApplicationRepository repository)
+    public DashboardService(IApplicationRepository repository, ICurrentUserService currentUser)
     {
         _repository = repository;
+        _currentUser = currentUser;
     }
     public async Task<DashboardStatsDto> GetStatsAsync()
     {
-        var all = await _repository.GetAllAsync();
+        var userId = _currentUser.UserId;
+        
+        var all = await _repository.GetAllAsync(userId);
         var applications = all.ToList();
-
-        var overdue = (await _repository.GetOverDueFollowUpAsync()).ToList();
-
+        var overdue = (await _repository.GetOverDueFollowUpAsync(userId)).ToList();
         var total = applications.Count;
         var interviews = applications.Count(a => a.Status == ApplicationStatus.Interview);
         var offers = applications.Count(a => a.Status == ApplicationStatus.Offer);

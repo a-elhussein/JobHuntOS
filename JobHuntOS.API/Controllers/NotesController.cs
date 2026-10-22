@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using JobHuntOS.Application.DTOs.Note;
 using JobHuntOS.Application.Services.Interfaces;
 using JobHuntOS.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobHuntOS.API.Controllers;
 
 [ApiController]
 [Route("api/applications/{applicationId:guid}/notes")]
+[Authorize]
 public class NotesController:ControllerBase
 {
     private readonly INoteService _service;
@@ -34,9 +36,9 @@ public class NotesController:ControllerBase
     }
 
     [HttpDelete("{noteId:guid}")]
-    public async Task<IActionResult> Delete(Guid noteId)
+    public async Task<IActionResult> Delete(Guid applicationId, Guid noteId)
     {
-        var result = await _service.DeleteAsync(noteId);
+        var result = await _service.DeleteAsync(applicationId, noteId);
         if (!result) return NotFound();
         return NoContent();
     }
