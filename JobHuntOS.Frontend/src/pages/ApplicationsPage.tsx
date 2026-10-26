@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { applicationsApi } from '../api/applicationsApi'
 import type { CreateApplicationDto } from '../types/index.ts'
+import NotesModal from "../components/applications/NotesModal.tsx";
 
 const ApplicationsPage = () => {
     const queryClient = useQueryClient()
     const [showForm, setShowForm] = useState(false)
     const [statusFilter, setStatusFilter] = useState<number | undefined>(undefined)
+    const [notesFor, setNotesFor] = useState<{ id: string; name: string } | null>(null)
 
     const statuses = [
         { label: 'All', value: undefined },
@@ -110,6 +112,12 @@ const ApplicationsPage = () => {
                                     <option value={4}>Withdrawn</option>
                                 </select>
                                 <button
+                                    onClick={() => setNotesFor({ id: app.id, name: app.companyName })}
+                                    className="text-blue-600 hover:text-blue-800 text-sm"
+                                >
+                                    Notes
+                                </button>
+                                <button
                                     onClick={() => deleteMutation.mutate(app.id)}
                                     className="text-red-500 hover:text-red-700 text-sm"
                                 >
@@ -136,6 +144,13 @@ const ApplicationsPage = () => {
                         queryClient.invalidateQueries({ queryKey: ['applications'] })
                         queryClient.invalidateQueries({ queryKey: ['dashboard-stats'] })
                     }}
+                />
+            )}
+            {notesFor && (
+                <NotesModal
+                    applicationId={notesFor.id}
+                    companyName={notesFor.name}
+                    onClose={() => setNotesFor(null)}
                 />
             )}
         </div>
