@@ -13,9 +13,10 @@ public class CvRepository: ICvRepository
     {
         _context = context;
     }
-    public async Task<UserCV?> GetCurrentAsync()
+    public async Task<UserCV?> GetCurrentAsync(Guid userId)
     {
         return await _context.UserCVs
+            .Where(c => c.UserId == userId)
             .OrderByDescending(c => c.UploadedAt)
             .FirstOrDefaultAsync();
     }

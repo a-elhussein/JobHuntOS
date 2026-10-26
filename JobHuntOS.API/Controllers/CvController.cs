@@ -1,12 +1,14 @@
 using System.Threading.Tasks;
 using JobHuntOS.Application.DTOs.Cv;
 using JobHuntOS.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobHuntOS.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class CvController: ControllerBase
 {
     private readonly ICvService _service;

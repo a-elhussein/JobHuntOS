@@ -2,12 +2,14 @@ using System;
 using System.Threading.Tasks;
 using JobHuntOS.Application.DTOs.Analysis;
 using JobHuntOS.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobHuntOS.API.Controllers;
 
 [ApiController]
 [Route("api/analysis")]
+[Authorize]
 public class AnalysisController:ControllerBase
 {
     private readonly IAnalysisService _analysisService;

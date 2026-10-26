@@ -6,5 +6,5 @@ public interface INoteService
 {
     Task<IEnumerable<NoteResponseDto>> GetByApplicationIdAsync(Guid applicationId);
     Task<NoteResponseDto> CreateAsync(Guid applicationId, CreateNoteDto dto);
-    Task<bool> DeleteAsync(Guid noteId);
+    Task<bool> DeleteAsync(Guid applicationId, Guid noteId);
 }

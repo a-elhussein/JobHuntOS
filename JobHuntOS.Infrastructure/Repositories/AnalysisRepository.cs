@@ -15,10 +15,10 @@ public class AnalysisRepository: IAnalysisRepository
     {
         _context = context;
     }
-    public async Task<AnalysisResult?> GetByApplicationIdAsync(Guid applicationId)
+    public async Task<AnalysisResult?> GetByApplicationIdAsync(Guid applicationId, Guid userId)
     {
         return await _context.AnalysisResults
-            .FirstOrDefaultAsync(x => x.ApplicationId == applicationId);
+            .FirstOrDefaultAsync(x => x.ApplicationId == applicationId && x.UserId == userId);
     }
 
     public async Task AddAsync(AnalysisResult result)

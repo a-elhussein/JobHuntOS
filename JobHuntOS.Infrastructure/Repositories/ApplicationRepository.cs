@@ -15,16 +15,16 @@ public class ApplicationRepository: IApplicationRepository
         _context = context;
     }
     
-    public async Task<JobApplication?> GetByIdAsync(Guid id)
+    public async Task<JobApplication?> GetByIdAsync(Guid id, Guid userId)
     {
         return await _context.JobApplications.FirstOrDefaultAsync
-            (a => a.Id == id && !a.IsDeleted);
+            (a => a.Id == id && a.UserId == userId && !a.IsDeleted);
     }
 
-    public async Task<IEnumerable<JobApplication>> GetAllAsync()
+    public async Task<IEnumerable<JobApplication>> GetAllAsync(Guid userId)
     {
         return await _context.JobApplications
-            .Where(a => !a.IsDeleted)
+            .Where(a => a.UserId == userId && !a.IsDeleted)
             .OrderByDescending(a => a.CreatedAt)
             .ToListAsync(); 
     }
@@ -52,20 +52,20 @@ public class ApplicationRepository: IApplicationRepository
         return await _context.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<JobApplication>> GetByStatusAsync(ApplicationStatus status)
+    public async Task<IEnumerable<JobApplication>> GetByStatusAsync(ApplicationStatus status, Guid userId)
     {
         return await _context.JobApplications
-            .Where(a => a.Status == status && !a.IsDeleted)
+            .Where(a => a.Status == status && a.UserId == userId && !a.IsDeleted)
             .OrderByDescending(a => a.CreatedAt)
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<JobApplication>> GetOverDueFollowUpAsync()
+    public async Task<IEnumerable<JobApplication>> GetOverDueFollowUpAsync(Guid userId)
     {
         var activeStatuses = new[] { ApplicationStatus.Applied, ApplicationStatus.Interview };
         
         return await _context.JobApplications
-            .Where(a => !a.IsDeleted
+            .Where(a => a.UserId == userId && !a.IsDeleted
             && a.FollowUpDate.HasValue
             && a.FollowUpDate.Value.Date < DateTime.UtcNow
             && activeStatuses.Contains(a.Status))
@@ -73,11 +73,11 @@ public class ApplicationRepository: IApplicationRepository
             .ToListAsync();
     }
 
-    public async Task<JobApplication?> GetWithNotesAndAnalysisAsync(Guid id)
+    public async Task<JobApplication?> GetWithNotesAndAnalysisAsync(Guid id, Guid userId)
     {
         return await _context.JobApplications
             .Include(a => a.Notes)
             .Include(a => a.AnalysisResult)
-            .FirstOrDefaultAsync(a => a.Id == id && !a.IsDeleted);
+            .FirstOrDefaultAsync(a => a.Id == id && a.UserId == userId && !a.IsDeleted);
     }
 }

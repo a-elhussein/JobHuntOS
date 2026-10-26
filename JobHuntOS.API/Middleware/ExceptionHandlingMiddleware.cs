@@ -47,6 +47,11 @@ public class ExceptionHandlingMiddleware
                 (int)HttpStatusCode.BadRequest,
                 "Invalid request",
                 exception.Message),
+            
+            UnauthorizedAccessException => new ErrorResponse(
+                (int)HttpStatusCode.Unauthorized,
+                "Unauthorized",
+                "Please log in"),
 
             _ => new ErrorResponse(
                 (int)HttpStatusCode.InternalServerError,

@@ -8,20 +8,22 @@ namespace JobHuntOS.Application.Services;
 public class CvService: ICvService
 {
     private readonly ICvRepository _repository;
+    private readonly ICurrentUserService _userService;
 
-    public CvService(ICvRepository repository)
+    public CvService(ICvRepository repository, ICurrentUserService  userService)
     {
         _repository = repository;
+        _userService = userService;
     }
     public async Task<CvResponseDto?> GetCurrentAsync()
     {
-        var cv = await _repository.GetCurrentAsync();
+        var cv = await _repository.GetCurrentAsync(_userService.UserId);
         return cv == null ? null : MapToResponseDto(cv);
     }
 
     public async Task<CvResponseDto> UpsertAsync(UpsertCvDto dto)
     {
-        var existing = await _repository.GetCurrentAsync();
+        var existing = await _repository.GetCurrentAsync(_userService.UserId);
         if (existing != null)
         {
             await _repository.DeleteAsync(existing);
@@ -30,6 +32,7 @@ public class CvService: ICvService
         var newCv = new UserCV
         {
             Id = Guid.NewGuid(),
+            UserId = _userService.UserId,
             Content = dto.Content,
             FileName = dto.FileName,
             UploadedAt = DateTime.UtcNow
@@ -43,7 +46,7 @@ public class CvService: ICvService
 
     public async Task<bool> DeleteAsync()
     {
-        var cv = await _repository.GetCurrentAsync();
+        var cv = await _repository.GetCurrentAsync(_userService.UserId);
         if (cv == null) return false;
         
         await _repository.DeleteAsync(cv);

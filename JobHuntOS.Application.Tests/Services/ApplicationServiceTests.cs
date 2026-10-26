@@ -11,14 +11,17 @@ namespace JobHuntOS.Application.Tests.Services;
 public class ApplicationServiceTests
 {
     private readonly Mock<IApplicationRepository> _repositoryMock;
+    private readonly Mock<ICurrentUserService> _currentUserMock;
+    private readonly Guid _userId = Guid.NewGuid();
     private readonly ApplicationService _service;
 
     public ApplicationServiceTests()
     {
         _repositoryMock = new Mock<IApplicationRepository>();
-        _service = new ApplicationService(_repositoryMock.Object);
+        _currentUserMock = new Mock<ICurrentUserService>();
+        _currentUserMock.Setup(c => c.UserId).Returns(_userId);
+        _service = new ApplicationService(_repositoryMock.Object, _currentUserMock.Object);
     }
-
     [Fact]
     public async Task CreateAsync_ShouldCreateApplication_WithCorrectFollowUpDate()
     {
@@ -56,7 +59,7 @@ public class ApplicationServiceTests
         var id = Guid.NewGuid();
 
         _repositoryMock
-            .Setup(r => r.GetByIdAsync(id))
+            .Setup(r => r.GetByIdAsync(id, _userId))
             .ReturnsAsync((JobApplication?)null);
 
         // Act
@@ -73,7 +76,7 @@ public class ApplicationServiceTests
         var id = Guid.NewGuid();
 
         _repositoryMock
-            .Setup(r => r.GetByIdAsync(id))
+            .Setup(r => r.GetByIdAsync(id, _userId))
             .ReturnsAsync((JobApplication?)null);
 
         // Act
@@ -91,7 +94,7 @@ public class ApplicationServiceTests
         var application = new JobApplication { Id = id, CompanyName = "Google" };
 
         _repositoryMock
-            .Setup(r => r.GetByIdAsync(id))
+            .Setup(r => r.GetByIdAsync(id,  _userId))
             .ReturnsAsync(application);
 
         _repositoryMock

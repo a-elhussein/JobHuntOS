@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using JobHuntOS.Application.DTOs.Application;
 using JobHuntOS.Application.Services.Interfaces;
 using JobHuntOS.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobHuntOS.API.Controllers;
@@ -10,6 +11,7 @@ namespace JobHuntOS.API.Controllers;
 
 [ApiController]
 [Route("api/applications")]
+[Authorize]
 public class ApplicationController: ControllerBase
 {
     private readonly IApplicationService _service;

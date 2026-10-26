@@ -9,28 +9,30 @@ namespace JobHuntOS.Application.Services;
 public class ApplicationService: IApplicationService
 {
     private readonly IApplicationRepository _repository;
+    private readonly ICurrentUserService _currentUser;
 
-    public ApplicationService(IApplicationRepository repository)
+    public ApplicationService(IApplicationRepository repository, ICurrentUserService  currentUser)
     {
         _repository = repository;
+        _currentUser = currentUser;
     }
     
     
     public async Task<IEnumerable<ApplicationResponseDto>> GetAllAsync()
     {
-        var applications = await _repository.GetAllAsync();
+        var applications = await _repository.GetAllAsync(_currentUser.UserId);
         return applications.Select(MapToResponseDto).ToList();
     }
 
     public async Task<IEnumerable<ApplicationResponseDto>> GetByStatusAsync(ApplicationStatus status)
     {
-        var applications = await _repository.GetByStatusAsync(status);
+        var applications = await _repository.GetByStatusAsync(status, _currentUser.UserId);
         return applications.Select(MapToResponseDto).ToList();
     }
 
     public async Task<ApplicationResponseDto?> GetByIdAsync(Guid id)
     {
-        var application = await _repository.GetByIdAsync(id);
+        var application = await _repository.GetByIdAsync(id, _currentUser.UserId);
         return application == null ? null : MapToResponseDto(application);
     }
 
@@ -39,6 +41,7 @@ public class ApplicationService: IApplicationService
         var application = new JobApplication
         {
             Id = Guid.NewGuid(),
+            UserId = _currentUser.UserId,
             CompanyName = dto.CompanyName,
             JobTitle = dto.JobTitle,
             JobUrl = dto.JobUrl,
@@ -59,12 +62,11 @@ public class ApplicationService: IApplicationService
         return MapToResponseDto(application);
     }
 
-    public async Task<ApplicationResponseDto> UpdateAsync(Guid id, UpdateApplicationDto dto)
+    public async Task<ApplicationResponseDto?> UpdateAsync(Guid id, UpdateApplicationDto dto)
     {
-        var application = await _repository.GetByIdAsync(id);
+        var application = await _repository.GetByIdAsync(id, _currentUser.UserId);
         if (application == null) return null;
         
-        if (dto.CompanyName != null) application.CompanyName = dto.CompanyName;
         if (dto.CompanyName != null) application.CompanyName = dto.CompanyName;
         if (dto.JobTitle != null) application.JobTitle = dto.JobTitle;
         if (dto.JobUrl != null) application.JobUrl = dto.JobUrl;
@@ -84,7 +86,7 @@ public class ApplicationService: IApplicationService
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var application = await _repository.GetByIdAsync(id);
+        var application = await _repository.GetByIdAsync(id, _currentUser.UserId);
         if (application == null) return false;
         
         await _repository.DeleteAsync(application);
@@ -94,7 +96,7 @@ public class ApplicationService: IApplicationService
 
     public async Task<IEnumerable<ApplicationResponseDto>> GetOverdueFollowUpsAsync()
     {
-        var application = await _repository.GetOverDueFollowUpAsync();
+        var application = await _repository.GetOverDueFollowUpAsync(_currentUser.UserId);
         return application.Select(MapToResponseDto).ToList();
     }
 
