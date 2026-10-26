@@ -97,3 +97,9 @@ export interface DashboardStats {
     overdueFollowUps: number;
     responseRate: number;
 }
+
+export interface AuthResponse {
+    token: string
+    email: string
+    expiresAt: string
+}

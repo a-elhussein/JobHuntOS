@@ -1,10 +1,26 @@
-import axios from 'axios';
+import axios from 'axios'
+import { tokenStorage } from '../auth/tokenStorage'
 
 const client = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-});
+    headers: { 'Content-Type': 'application/json' },
+})
 
-export default client;
+client.interceptors.request.use(config => {
+    const token = tokenStorage.get()
+    if (token) config.headers.Authorization = `Bearer ${token}`
+    return config
+})
+
+client.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response?.status === 401 && tokenStorage.get()) {
+            tokenStorage.clear()
+            window.location.href = '/login'
+        }
+        return Promise.reject(error)
+    }
+)
+
+export default client
