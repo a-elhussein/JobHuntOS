@@ -13,6 +13,7 @@ const LoginPage = () => {
     const [error, setError] = useState('')
 
     const mutation = useMutation({
+        meta: { silent: true },
         mutationFn: () =>
             mode === 'login'
                 ? authApi.login(email, password)

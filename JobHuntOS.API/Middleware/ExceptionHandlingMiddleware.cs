@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
+using JobHuntOS.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -52,6 +53,11 @@ public class ExceptionHandlingMiddleware
                 (int)HttpStatusCode.Unauthorized,
                 "Unauthorized",
                 "Please log in"),
+            
+            RateLimitExceededException => new ErrorResponse(
+                (int)HttpStatusCode.TooManyRequests,
+                "Daily limit reached",
+                exception.Message),
 
             _ => new ErrorResponse(
                 (int)HttpStatusCode.InternalServerError,

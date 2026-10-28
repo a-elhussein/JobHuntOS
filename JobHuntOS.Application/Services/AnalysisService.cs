@@ -1,4 +1,5 @@
 using JobHuntOS.Application.DTOs.Analysis;
+using JobHuntOS.Application.Exceptions;
 using JobHuntOS.Application.Interfaces;
 using JobHuntOS.Application.Services.Interfaces;
 using JobHuntOS.Domain.Entities;
@@ -7,6 +8,8 @@ namespace JobHuntOS.Application.Services;
 
 public class AnalysisService : IAnalysisService
 {
+    public const int DailyLimit = 3;
+    
     private readonly IClaudeApiService _claudeApiService;
     private readonly ICvRepository _cvRepository;
     private readonly IAnalysisRepository _analysisRepository;
@@ -27,6 +30,11 @@ public class AnalysisService : IAnalysisService
     {
         var userId = _currentUserService.UserId;
         
+        var usedToday = await _analysisRepository.CountSinceAsync(userId, DateTime.UtcNow.Date);
+        if (usedToday >= DailyLimit)
+            throw new RateLimitExceededException(
+                $"Daily limit of {DailyLimit} analyses reached. Try again tomorrow.");
+        
         if (dto.ApplicationId.HasValue)
         {
             var app = await _applicationRepository.GetByIdAsync(dto.ApplicationId.Value, userId);
@@ -43,6 +51,7 @@ public class AnalysisService : IAnalysisService
         var analysisResult = new AnalysisResult
         {
             Id = Guid.NewGuid(),
+            UserId = userId,  
             ApplicationId = dto.ApplicationId,
             FitScore = result.FitScore,
             MatchingSkills = result.MatchingSkills,
