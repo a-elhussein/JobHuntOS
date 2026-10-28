@@ -30,4 +30,10 @@ public class AnalysisRepository: IAnalysisRepository
     {
         return await _context.SaveChangesAsync();
     }
+    
+    public async Task<int> CountSinceAsync(Guid userId, DateTime since)
+    {
+        return await _context.AnalysisResults
+            .CountAsync(a => a.UserId == userId && a.AnalysedAt >= since);
+    }
 }

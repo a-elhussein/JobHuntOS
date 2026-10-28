@@ -7,4 +7,5 @@ public interface IAnalysisRepository
     Task<AnalysisResult?> GetByApplicationIdAsync(Guid applicationId, Guid userId);
     Task AddAsync(AnalysisResult result);
     Task<int> SaveChangesAsync();
+    Task<int> CountSinceAsync(Guid userId, DateTime since);
 }
