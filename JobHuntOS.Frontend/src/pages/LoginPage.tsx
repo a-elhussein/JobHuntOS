@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { authApi } from '../api/authApi'
 import { useAuth } from '../auth/AuthContext'
+import { warmUpApi } from '../api/health'
 
 const LoginPage = () => {
     const { login } = useAuth()
@@ -11,6 +12,11 @@ const LoginPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+
+    // Wake the API container while the user is still typing
+    useEffect(() => {
+        warmUpApi()
+    }, [])
 
     const mutation = useMutation({
         meta: { silent: true },
@@ -57,11 +63,16 @@ const LoginPage = () => {
                         type="password"
                         required
                         minLength={8}
-                        placeholder="Password (8+ characters)"
+                        placeholder="Password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
                     />
+                    {mode === 'register' && (
+                        <p className="text-xs text-gray-500">
+                            8+ characters, with a number and a symbol (for example !).
+                        </p>
+                    )}
 
                     {error && <p className="text-red-600 text-sm">{error}</p>}
 
@@ -72,6 +83,12 @@ const LoginPage = () => {
                     >
                         {mutation.isPending ? 'Please wait...' : mode === 'login' ? 'Log in' : 'Register'}
                     </button>
+
+                    {mutation.isPending && (
+                        <p className="text-xs text-gray-500 text-center">
+                            First visit can take up to 30 seconds while the server wakes up.
+                        </p>
+                    )}
                 </form>
 
                 <button
