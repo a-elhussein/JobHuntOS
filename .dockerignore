@@ -1,0 +1,7 @@
+.env
+**/appsettings.json
+**/bin
+**/obj
+.git
+.idea
+JobHuntOS.Frontend

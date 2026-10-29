@@ -38,11 +38,15 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddInfrastructre(builder.Configuration);
 builder.Services.AddAuthServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
+var allowedOrigins = builder.Configuration
+                         .GetSection("Cors:AllowedOrigins").Get<string[]>()
+                     ?? new[] { "http://localhost:5173" };
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(allowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -68,5 +72,5 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-
+app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
 app.Run();
