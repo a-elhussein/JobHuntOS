@@ -52,7 +52,7 @@ const TermsPage = () => (
 
             <h2 className="text-lg font-semibold text-gray-900 pt-2">Governing law and contact</h2>
             <p>
-                These terms are governed by the law of England and Wales. Contact: YOUR_EMAIL_HERE
+                These terms are governed by the law of England and Wales. Contact: aelhussein1@icloud.com
             </p>
 
             <p className="pt-2">
