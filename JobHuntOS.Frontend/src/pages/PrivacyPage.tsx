@@ -14,7 +14,7 @@ const PrivacyPage = () => (
 
             <h2 className="text-lg font-semibold text-gray-900 pt-2">Who is responsible</h2>
             <p>
-                The project is run by Ahmed Elhussein. Contact: YOUR_EMAIL_HERE
+                The project is run by Ahmed Elhussein. Contact: aelhussein1@icloud.com
             </p>
 
             <h2 className="text-lg font-semibold text-gray-900 pt-2">What is stored</h2>
