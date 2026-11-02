@@ -5,6 +5,8 @@ import ApplicationsPage from './pages/ApplicationsPage'
 import AnalysisPage from './pages/AnalysisPage'
 import SettingsPage from './pages/SettingsPage'
 import LoginPage from './pages/LoginPage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
 import { useAuth } from './auth/AuthContext'
 
 const ProtectedLayout = () => {
@@ -25,6 +27,8 @@ function App() {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
             <Route element={<ProtectedLayout />}>
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />
                 <Route path="/dashboard" element={<DashboardPage />} />
