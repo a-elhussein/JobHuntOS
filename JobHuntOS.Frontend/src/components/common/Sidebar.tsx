@@ -35,6 +35,9 @@ const Sidebar = () => {
                     </NavLink>
                 ))}
             </nav>
+            <p className="px-6 pb-2 text-xs text-gray-500">
+                Demo project. Use sample data.
+            </p>
             <div className="p-4 border-t border-gray-700">
                 <button
                     onClick={logout}
